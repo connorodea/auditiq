@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     stripe_publishable_key: str = ""
     stripe_webhook_secret: str = ""
     stripe_price_report: str = ""
+    stripe_price_consultant: str = ""  # $149/mo subscription
 
     # App
     app_url: str = "http://localhost:3000"
