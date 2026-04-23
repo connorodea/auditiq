@@ -1,0 +1,16 @@
+INDUSTRY_LABELS: dict[str, str] = {
+    "healthcare": "Healthcare",
+    "finance": "Finance & Banking",
+    "retail": "Retail",
+    "ecommerce": "E-Commerce",
+    "manufacturing": "Manufacturing",
+    "professional_services": "Professional Services",
+    "technology": "Technology",
+    "education": "Education",
+    "real_estate": "Real Estate",
+    "construction": "Construction",
+    "logistics": "Logistics & Supply Chain",
+    "hospitality": "Hospitality",
+    "legal": "Legal",
+    "other": "Other",
+}
