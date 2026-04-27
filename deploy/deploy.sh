@@ -83,8 +83,8 @@ echo "Nginx reloaded."
 echo ""
 echo "--- Health checks ---"
 sleep 2
-curl -sf http://127.0.0.1:8100/api/v1/health && echo " [backend OK]" || echo " [backend FAILED]"
-curl -sf http://127.0.0.1:3100/ > /dev/null && echo " [frontend OK]" || echo " [frontend FAILED]"
+curl -sf http://127.0.0.1:8900/api/v1/health && echo " [backend OK]" || echo " [backend FAILED]"
+curl -sf http://127.0.0.1:3900/ > /dev/null && echo " [frontend OK]" || echo " [frontend FAILED]"
 
 echo ""
 echo "=== Deploy complete ==="

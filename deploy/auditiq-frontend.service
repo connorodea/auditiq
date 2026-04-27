@@ -7,7 +7,7 @@ Type=exec
 User=root
 WorkingDirectory=/var/www/auditiq/frontend
 Environment=NODE_ENV=production
-Environment=PORT=3100
+Environment=PORT=3900
 EnvironmentFile=/var/www/auditiq/frontend/.env.local
 ExecStart=/usr/bin/node /var/www/auditiq/frontend/.next/standalone/server.js
 Restart=always
