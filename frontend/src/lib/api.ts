@@ -12,6 +12,16 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
+function authRequest<T>(path: string, token: string, options?: RequestInit): Promise<T> {
+  return request<T>(path, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ...options?.headers,
+    },
+  });
+}
+
 // Assessment endpoints
 export const api = {
   getIndustries: () => request<string[]>("/assessments/industries"),
@@ -70,4 +80,42 @@ export const api = {
         body: JSON.stringify({ report_id: reportId, email }),
       }
     ),
+
+  // Auth endpoints
+  register: (data: {
+    email: string;
+    password: string;
+    full_name: string;
+    company_name: string;
+  }) =>
+    request<any>("/auth/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+
+  login: (email: string, password: string) =>
+    request<any>("/auth/login", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+    }),
+
+  getMe: (token: string) => authRequest<any>("/auth/me", token),
+
+  // Tenant endpoints
+  getMyTenant: (token: string) => authRequest<any>("/tenants/me", token),
+
+  updateMyTenant: (token: string, data: Record<string, any>) =>
+    authRequest<any>("/tenants/me", token, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }),
+
+  lookupTenant: (slug: string) => request<any>(`/tenants/lookup/${slug}`),
+
+  // Dashboard endpoints
+  getDashboard: (token: string) => authRequest<any>("/dashboard", token),
+
+  // Subscription
+  createSubscription: (token: string) =>
+    authRequest<any>("/payments/subscribe", token, { method: "POST" }),
 };
