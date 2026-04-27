@@ -1,0 +1,19 @@
+[Unit]
+Description=AuditIQ Frontend (Next.js)
+After=network.target
+
+[Service]
+Type=exec
+User=root
+WorkingDirectory=/var/www/auditiq/frontend
+Environment=NODE_ENV=production
+Environment=PORT=3100
+EnvironmentFile=/var/www/auditiq/frontend/.env.local
+ExecStart=/usr/bin/node /var/www/auditiq/frontend/.next/standalone/server.js
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
