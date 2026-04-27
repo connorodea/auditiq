@@ -1,0 +1,17 @@
+[Unit]
+Description=AuditIQ Backend (FastAPI)
+After=network.target postgresql.service redis.service
+
+[Service]
+Type=exec
+User=root
+WorkingDirectory=/var/www/auditiq/backend
+EnvironmentFile=/var/www/auditiq/backend/.env
+ExecStart=/var/www/auditiq/backend/.venv/bin/uvicorn auditiq.main:app --host 127.0.0.1 --port 8900 --workers 2
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
